@@ -1,65 +1,75 @@
-# Prime Cut
+ime Cut Barber
 
-Sistema web para barbearia premium com agendamento online, login de clientes, painel administrativo, painel do barbeiro, planos VIP e recursos personalizados.
+Sistema web completo para barbearias desenvolvido com PHP, SQLite, JavaScript e deploy em nuvem utilizando Railway.
 
-## Objetivo
+![Prime Cut](https://primecut-production.up.railway.app/login.php)
 
-O Prime Cut foi criado como um projeto pessoal full stack para simular uma plataforma moderna de barbearia, indo além de um site institucional simples.
+---
 
-## Funcionalidades
+## 🚀 Funcionalidades
 
-- Página inicial premium
-- Cadastro e login de clientes
-- Dashboard do cliente
-- Agendamento online
-- Cancelamento de agendamento
-- Painel administrativo
-- Painel do barbeiro
-- Controle de status dos atendimentos
-- Calendário visual de agendamentos
-- Diagnóstico de estilo
-- Meu corte de sempre
-- Repetir corte favorito
-- Planos VIP
-- Controle de saldo do plano
-- Confirmação via WhatsApp
-- Analytics administrativo
+- ✅ Login e cadastro de usuários
+- ✅ Sistema de agendamento
+- ✅ Página de serviços
+- ✅ Página de barbeiros
+- ✅ Interface premium responsiva
+- ✅ Deploy online com Railway
+- ✅ Versionamento com GitHub
 
-## Tecnologias utilizadas
+---
+
+## 🛠️ Tecnologias utilizadas
 
 - PHP
-- PostgreSQL
-- PDO
+- SQLite
 - HTML5
 - CSS3
 - JavaScript
-- Chart.js
-- FullCalendar.js
+- Railway
+- Git & GitHub
 
-## Como rodar localmente
+---
 
-1. Configure o banco PostgreSQL.
-2. Atualize o arquivo `config/database.php`.
-3. Inicie o servidor local:
+## 🌐 Projeto Online
+
+🔗 https://primecut-production.up.railway.app/login.php
+
+---
+
+## 📸 Screenshots
+
+### Login
+<img width="100%" src="https://raw.githubusercontent.com/wallacyramos/primecut/main/screenshots/login.png">
+
+### Serviços
+<img width="100%" src="https://raw.githubusercontent.com/wallacyramos/primecut/main/screenshots/servicos.png">
+
+### Barbeiros
+<img width="100%" src="https://raw.githubusercontent.com/wallacyramos/primecut/main/screenshots/barbeiros.png">
+
+---
+
+## ⚙️ Como rodar localmente
 
 ```bash
+git clone https://github.com/wallacyramos/primecut.git
+cd primecut
 php -S localhost:8000
-Acesse:
+
+Abra:
+
 http://localhost:8000
-Perfis do sistema
+📌 Objetivo do projeto
 
-O sistema possui três tipos de usuários:
+O Prime Cut foi desenvolvido para praticar:
 
-cliente
-barbeiro
-admin
-Diferenciais
-Diagnóstico de estilo
-Meu corte de sempre
-Planos VIP
-Reagendamento rápido
-Painel administrativo com métricas
-Confirmação via WhatsApp
-Status
-
-Projeto em desenvolvimento.
+desenvolvimento full stack
+autenticação
+deploy cloud
+integração entre front-end e back-end
+boas práticas de desenvolvimento web
+👨‍💻 Desenvolvedor
+Wallacy Ramos
+GitHub: https://github.com/wallacyramos
+Portfólio: https://portfolio-blue-pi-58.vercel.app/
+WhatsApp: https://wa.me/5511960303909
