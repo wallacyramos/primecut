@@ -1,222 +1,188 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+session_start();
 
-$servicos = [
-    [
-        "nome" => "Corte Degradê",
-        "preco" => "R$ 35",
-        "tempo" => "40 min"
-    ],
-    [
-        "nome" => "Barba",
-        "preco" => "R$ 25",
-        "tempo" => "30 min"
-    ],
-    [
-        "nome" => "Corte + Barba",
-        "preco" => "R$ 55",
-        "tempo" => "1h"
-    ],
-    [
-        "nome" => "Sobrancelha",
-        "preco" => "R$ 10",
-        "tempo" => "10 min"
-    ]
+$services = [
+  ['icon' => '✂', 'name' => 'Corte Masculino', 'desc' => 'Técnica precisa para cada tipo de cabelo e formato de rosto.', 'price' => '45', 'time' => '40 min'],
+  ['icon' => '🪒', 'name' => 'Barba', 'desc' => 'Modelagem, hidratação e acabamento perfeito para sua barba.', 'price' => '35', 'time' => '30 min'],
+  ['icon' => '⭐', 'name' => 'Corte + Barba', 'desc' => 'A combinação perfeita com desconto especial.', 'price' => '70', 'time' => '60 min'],
+  ['icon' => '💎', 'name' => 'Pigmentação', 'desc' => 'Cobertura natural de grisalhos com resultado premium.', 'price' => '120', 'time' => '90 min'],
+  ['icon' => '✨', 'name' => 'Hidratação', 'desc' => 'Nutrição profunda para cabelos ressecados ou danificados.', 'price' => '55', 'time' => '45 min'],
+  ['icon' => '👑', 'name' => 'Plano VIP', 'desc' => 'Corte + barba semanal com prioridade e descontos exclusivos.', 'price' => '249/mês', 'time' => 'Semanal'],
 ];
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Serviços | Prime Cut</title>
+<title>Serviços — Prime Cut</title>
 
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    background:#0d0d0d;
-    color:white;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-header{
-    width:100%;
-    padding:20px 50px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#111;
-    border-bottom:1px solid #222;
-}
-
-.logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#8b5cf6;
-}
-
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-    transition:.3s;
-}
-
-nav a:hover{
-    color:#8b5cf6;
-}
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
-    padding:60px 0;
-}
-
-.titulo{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.titulo h1{
-    font-size:48px;
-    margin-bottom:10px;
-}
-
-.titulo p{
-    color:#999;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:#151515;
-    border:1px solid #262626;
-    border-radius:18px;
-    padding:30px;
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-    border-color:#8b5cf6;
-    box-shadow:0 0 25px rgba(139,92,246,.3);
-}
-
-.card h2{
-    color:#8b5cf6;
-    margin-bottom:20px;
-}
-
-.preco{
-    font-size:32px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.tempo{
-    color:#aaa;
-    margin-bottom:25px;
-}
-
-.botao{
-    display:inline-block;
-    width:100%;
-    text-align:center;
-    background:#8b5cf6;
-    padding:14px;
-    border-radius:12px;
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.botao:hover{
-    background:#7c3aed;
-}
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#666;
-    border-top:1px solid #222;
-    margin-top:60px;
-}
-
-</style>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<header>
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.php" class="logo">
+      <span class="logo-pc">PRIME</span><span class="logo-cut">CUT</span>
+    </a>
 
-<div class="logo">
-Prime Cut
-</div>
+    <ul class="nav-links">
+      <li><a href="servicos.php">Serviços</a></li>
+      <li><a href="barbeiros.php">Barbeiros</a></li>
+      <li><a href="diagnostico.php">Diagnóstico</a></li>
+      <li><a href="contato.php">Contato</a></li>
+    </ul>
 
-<nav>
-    <a href="barbeiros.php">Barbeiros</a>
-    <a href="servicos.php">Serviços</a>
-    <a href="agendamento.php">Agendamento</a>
-    <a href="login.php">Login</a>
+    <div class="nav-ctas">
+      <?php if(isset($_SESSION['user_id'])): ?>
+        <a href="cliente/dashboard.php" class="btn btn-ghost">Minha Área</a>
+        <a href="agendamento.php" class="btn btn-gold">Agendar</a>
+      <?php else: ?>
+        <a href="login.php" class="btn btn-ghost">Entrar</a>
+        <a href="agendamento.php" class="btn btn-gold">Agendar Agora</a>
+      <?php endif; ?>
+    </div>
+
+    <button class="nav-toggle" id="navToggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
-</header>
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+  </div>
 
-<div class="container">
+  <div class="hero-content">
+    <div class="hero-badge">✦ Serviços Premium</div>
 
-<div class="titulo">
-    <h1>Nossos Serviços</h1>
-    <p>Escolha o melhor serviço para seu estilo.</p>
-</div>
+    <h1 class="hero-title">
+      Serviços para<br>
+      <span class="gold">elevar seu estilo.</span>
+    </h1>
 
-<div class="grid">
+    <p class="hero-sub">
+      Escolha entre cortes, barba, hidratação, pigmentação e planos exclusivos.
+      Cada serviço foi pensado para entregar estilo, precisão e experiência premium.
+    </p>
 
-<?php foreach($servicos as $servico): ?>
+    <div class="hero-btns">
+      <a href="agendamento.php" class="btn btn-gold btn-lg">Agendar Serviço</a>
+      <a href="diagnostico.php" class="btn btn-outline btn-lg">Fazer Diagnóstico</a>
+    </div>
+  </div>
 
-<div class="card">
+  <div class="hero-img-wrap">
+    <div class="hero-img-frame">
+      <div class="hero-img-placeholder">
+        <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="500" fill="#1a1a1a"/>
+          <circle cx="200" cy="150" r="75" fill="#2a2a2a"/>
+          <rect x="110" y="250" width="180" height="190" rx="10" fill="#2a2a2a"/>
+          <text x="200" y="410" text-anchor="middle" fill="#C9A84C" font-family="serif" font-size="16">SERVIÇOS PRIME</text>
+        </svg>
+      </div>
+      <div class="hero-img-accent"></div>
+    </div>
+  </div>
+</section>
 
-<h2><?= $servico['nome']; ?></h2>
+<section class="section services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Tabela de serviços</span>
+      <h2>Nossos <span class="gold">serviços</span></h2>
+      <p>Escolha o serviço ideal e agende seu horário online.</p>
+    </div>
 
-<div class="preco">
-<?= $servico['preco']; ?>
-</div>
+    <div class="services-grid">
+      <?php foreach($services as $s): ?>
+        <div class="service-card">
+          <div class="service-icon"><?= $s['icon'] ?></div>
+          <h3><?= $s['name'] ?></h3>
+          <p><?= $s['desc'] ?></p>
 
-<div class="tempo">
-Tempo médio: <?= $servico['tempo']; ?>
-</div>
+          <div class="service-footer">
+            <div class="service-meta">
+              <span class="service-price">R$ <?= $s['price'] ?></span>
+              <span class="service-time"><?= $s['time'] ?></span>
+            </div>
 
-<a href="agendamento.php" class="botao">
-Agendar Agora
-</a>
+            <a href="agendamento.php" class="btn btn-sm btn-gold">Agendar</a>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
 
-</div>
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div class="cta-content">
+        <h2>Pronto para <span class="gold">agendar?</span></h2>
+        <p>Escolha seu serviço, barbeiro e horário de forma rápida e prática.</p>
 
-<?php endforeach; ?>
+        <div class="cta-btns">
+          <a href="agendamento.php" class="btn btn-gold btn-lg">Agendar Online</a>
+          <a href="barbeiros.php" class="btn btn-ghost btn-lg">Ver Barbeiros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-</div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-pc">PRIME</span><span class="logo-cut">CUT</span>
+        </div>
+        <p>Barbearia premium em São Paulo. Estilo, precisão e experiência incomparável desde 2018.</p>
+      </div>
 
-</div>
+      <div class="footer-links">
+        <h5>Navegação</h5>
+        <ul>
+          <li><a href="servicos.php">Serviços</a></li>
+          <li><a href="barbeiros.php">Barbeiros</a></li>
+          <li><a href="agendamento.php">Agendar</a></li>
+          <li><a href="diagnostico.php">Diagnóstico</a></li>
+        </ul>
+      </div>
 
-<footer>
-© <?php echo date('Y'); ?> Prime Cut Barber
+      <div class="footer-links">
+        <h5>Conta</h5>
+        <ul>
+          <li><a href="login.php">Login</a></li>
+          <li><a href="cadastro.php">Cadastro</a></li>
+          <li><a href="cliente/dashboard.php">Minha Área</a></li>
+          <li><a href="cliente/fidelidade.php">Fidelidade</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h5>Contato</h5>
+        <p>📍 Rua das Palmeiras, 123<br>Pinheiros, São Paulo - SP</p>
+        <p>📞 (11) 9999-9999</p>
+        <p>🕐 Seg–Sáb: 9h às 20h</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Prime Cut Barbearia. Todos os direitos reservados.</p>
+    </div>
+  </div>
 </footer>
 
+<script src="assets/js/main.js"></script>
 </body>
 </html>
