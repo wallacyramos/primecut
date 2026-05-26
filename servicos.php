@@ -29,81 +29,133 @@ $servicos = [
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Serviços - Prime Cut</title>
+<title>Serviços | Prime Cut</title>
 
 <style>
 
-body{
+*{
     margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    background:#0f0f0f;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0d0d0d;
     color:white;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+header{
+    width:100%;
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#111;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#8b5cf6;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#8b5cf6;
 }
 
 .container{
     width:90%;
     max-width:1200px;
     margin:auto;
-    padding:40px 0;
+    padding:60px 0;
 }
 
-h1{
+.titulo{
     text-align:center;
-    margin-bottom:40px;
-    font-size:42px;
+    margin-bottom:50px;
+}
+
+.titulo h1{
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.titulo p{
+    color:#999;
 }
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
 }
 
 .card{
-    background:#1a1a1a;
-    padding:25px;
-    border-radius:20px;
-    transition:0.3s;
-    border:1px solid #2d2d2d;
+    background:#151515;
+    border:1px solid #262626;
+    border-radius:18px;
+    padding:30px;
+    transition:.3s;
 }
 
 .card:hover{
     transform:translateY(-5px);
-    border-color:#7c3aed;
-    box-shadow:0 0 20px rgba(124,58,237,0.4);
+    border-color:#8b5cf6;
+    box-shadow:0 0 25px rgba(139,92,246,.3);
 }
 
 .card h2{
-    margin-top:0;
-    color:#a855f7;
+    color:#8b5cf6;
+    margin-bottom:20px;
 }
 
 .preco{
-    font-size:24px;
+    font-size:32px;
     font-weight:bold;
-    margin:15px 0;
+    margin-bottom:15px;
 }
 
 .tempo{
-    color:#b3b3b3;
+    color:#aaa;
+    margin-bottom:25px;
 }
 
 .botao{
     display:inline-block;
-    margin-top:20px;
-    padding:12px 20px;
-    background:#7c3aed;
+    width:100%;
+    text-align:center;
+    background:#8b5cf6;
+    padding:14px;
+    border-radius:12px;
     color:white;
     text-decoration:none;
-    border-radius:10px;
-    transition:0.3s;
+    font-weight:bold;
+    transition:.3s;
 }
 
 .botao:hover{
-    background:#9333ea;
+    background:#7c3aed;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#666;
+    border-top:1px solid #222;
+    margin-top:60px;
 }
 
 </style>
@@ -112,9 +164,27 @@ h1{
 
 <body>
 
+<header>
+
+<div class="logo">
+Prime Cut
+</div>
+
+<nav>
+    <a href="barbeiros.php">Barbeiros</a>
+    <a href="servicos.php">Serviços</a>
+    <a href="agendamento.php">Agendamento</a>
+    <a href="login.php">Login</a>
+</nav>
+
+</header>
+
 <div class="container">
 
-<h1>Nossos Serviços ✂️</h1>
+<div class="titulo">
+    <h1>Nossos Serviços</h1>
+    <p>Escolha o melhor serviço para seu estilo.</p>
+</div>
 
 <div class="grid">
 
@@ -133,7 +203,7 @@ Tempo médio: <?= $servico['tempo']; ?>
 </div>
 
 <a href="agendamento.php" class="botao">
-Agendar
+Agendar Agora
 </a>
 
 </div>
@@ -143,6 +213,10 @@ Agendar
 </div>
 
 </div>
+
+<footer>
+© <?php echo date('Y'); ?> Prime Cut Barber
+</footer>
 
 </body>
 </html>
