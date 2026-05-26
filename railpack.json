@@ -1,0 +1,11 @@
+{
+  "$schema": "https://schema.railpack.com",
+  "packages": {
+    "apt": [
+      "php8.4-pgsql"
+    ]
+  },
+  "deploy": {
+    "startCommand": "php -S 0.0.0.0:$PORT"
+  }
+}
